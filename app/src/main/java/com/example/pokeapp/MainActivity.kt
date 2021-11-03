@@ -12,10 +12,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val butContinuar: Button = findViewById(R.id.butContinuar)
-
+        val butFav: Button = findViewById(R.id.butFavoritos)
         butContinuar.setOnClickListener { _: View ->
             val intent: Intent = Intent()
             intent.setClass(this, PokemonListActivity::class.java)
+            startActivity(intent)
+        }
+        butFav.setOnClickListener { _: View ->
+            val intent: Intent = Intent()
+            intent.setClass(this, FavoritosListActivity::class.java)
             startActivity(intent)
         }
     }
