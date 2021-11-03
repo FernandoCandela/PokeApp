@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/cursos/2021-2/Programacion Movil/Asignaciones/pokeApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/cursos/2021-2/Programacion Movil/Asignaciones/pokeApp/app/src/main/res/layout/activity_pokemon_list.xml" value="0.33" />
+        <entry key="..\:/cursos/2021-2/Programacion Movil/Asignaciones/pokeApp/app/src/main/res/layout/fragment_pokemon.xml" value="0.33" />
       </map>
     </option>
   </component>
