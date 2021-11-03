@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PokeApp">
         <activity
+            android:name=".activity_pokemon_detalle"
+            android:exported="false" />
+        <activity
             android:name=".activity_favoritos"
             android:exported="false" />
         <activity
@@ -21,7 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PokemonListActivity"></activity>
+        <activity android:name=".PokemonListActivity" />
     </application>
 
 </manifest>
