@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PokeApp">
         <activity
-            android:name=".activity_pokemon_detalle"
+            android:name=".PokemonDetalleActivity"
             android:exported="false" />
         <activity
-            android:name=".activity_favoritos"
+            android:name=".FavoritosListActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
