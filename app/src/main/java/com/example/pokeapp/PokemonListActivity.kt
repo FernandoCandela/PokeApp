@@ -1,5 +1,6 @@
 package com.example.pokeapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -36,7 +37,8 @@ class PokemonListActivity : AppCompatActivity(), PokemonFragment.OnPokemonSelect
     }
 
     override fun onSelect(pokemon: PokeResult) {
-        TODO("Not yet implemented")
-        println("Cambio de pantalla")
+        val intent: Intent = Intent()
+        intent.setClass(this, PokemonDetalleActivity::class.java)
+        startActivity(intent)
     }
 }
