@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/fragment_pokemon_favorito"></androidx.recyclerview.widget.RecyclerView>
     <TextView
-        android:id="@+id/textView21"
+        android:id="@+id/tviTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
