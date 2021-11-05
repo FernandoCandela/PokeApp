@@ -37,8 +37,14 @@ class PokemonListActivity : AppCompatActivity(), PokemonFragment.OnPokemonSelect
     }
 
     override fun onSelect(pokemon: PokeResult) {
-        val intent: Intent = Intent()
+/*        val intent: Intent = Intent()
         intent.setClass(this, PokemonDetalleActivity::class.java)
+        startActivity(intent)*/
+        
+        val intent: Intent = Intent(this, PokemonDetalleActivity::class.java)
+        val bundle: Bundle = Bundle()
+        bundle.putString("name", pokemon.name)
+        intent.putExtra("data", bundle)
         startActivity(intent)
     }
 }

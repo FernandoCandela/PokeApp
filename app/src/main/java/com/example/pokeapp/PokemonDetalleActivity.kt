@@ -17,7 +17,7 @@ class PokemonDetalleActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(PokeInfoManager::class.java)
 
-        //val id = intent.extras?.get("name") as String
+        val name = intent.getBundleExtra("data")?.getString("name").toString()
 
         val tviTitle: TextView = findViewById(R.id.tviTitle)
         val tviAttack: TextView = findViewById(R.id.tviAttack)
@@ -26,7 +26,7 @@ class PokemonDetalleActivity : AppCompatActivity() {
         val tviSpecialDefense: TextView = findViewById(R.id.tviSpecialDefense)
         val imgPokemon: ImageView = findViewById(R.id.imgPokemon)
 
-        viewModel.getPokemonInfo("bulbasaur")
+        viewModel.getPokemonInfo(name)
 
         viewModel.pokemonInfo.observe(this, Observer { pokemon ->
             tviTitle.text = pokemon.name
