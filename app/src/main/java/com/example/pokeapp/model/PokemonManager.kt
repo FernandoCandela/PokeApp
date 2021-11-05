@@ -27,31 +27,14 @@ class PokemonManager(context: Context) {
     private val service: APIPokemonService = retrofit.create(APIPokemonService::class.java)
 
 
-    fun getPokemonList(callbackOK: (List<Pokemon>) -> Unit, callbackError: (String) -> Unit) {
+    fun getPokemonList(callbackOK: (PokeApiResponse) -> Unit, callbackError: (String) -> Unit) {
         val call = service.getPokemonList(20, 0)
         call.enqueue(object : Callback<PokeApiResponse> {
             override fun onResponse(
                 call: Call<PokeApiResponse>,
                 response: Response<PokeApiResponse>
             ) {
-                val pokemonList = mutableListOf<Pokemon>()
-                response.body()!!.results.forEach { a ->
-                    println(a.name)
-                    val call = service.getPokemonStats(a.name)
-                    call.enqueue(object : Callback<Pokemon> {
-                        override fun onResponse(call: Call<Pokemon>, response: Response<Pokemon>) {
-                            response.body()!!.let { pokemon ->
-                                println(pokemon.id)
-                                pokemonList.add(pokemon)
-                            }
-                        }
-
-                        override fun onFailure(call: Call<Pokemon>, t: Throwable) {
-                            call.cancel()
-                        }
-                    })
-                }
-                callbackOK(pokemonList)
+                callbackOK(response.body()!!)
             }
 
             override fun onFailure(call: Call<PokeApiResponse>, t: Throwable) {
@@ -61,21 +44,23 @@ class PokemonManager(context: Context) {
         })
     }
 
-/*  fun getPokemonStats(name:String) {
-        //val pokemonInfo = MutableLiveData<Pokemon>()
+    fun getPokemonStats(
+        callbackOK: (Pokemon) -> Unit,
+        callbackError: (String) -> Unit,
+        name: String
+    ) {
         val call = service.getPokemonStats(name)
         call.enqueue(object : Callback<Pokemon> {
-            override fun onResponse(call: Call<Pokemon>, response: Response<Pokemon>) {
-                response.body()?.let { pokemon ->
-                    pokemonInfo.postValue(pokemon)
-                }
+            override fun onResponse(call :Call<Pokemon>, response: Response<Pokemon>) {
+                callbackOK(response.body()!!)
             }
 
             override fun onFailure(call: Call<Pokemon>, t: Throwable) {
-                call.cancel()
+                Log.e("PokemonManager", t.message!!)
+                callbackError(t.message!!)
             }
         })
-    }*/
+    }
 
 
     fun getProductsByRoom(callbackOK: (List<Pokemon2>) -> Unit, callbackError: (String) -> Unit) {

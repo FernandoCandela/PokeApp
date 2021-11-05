@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokeapp.fragment.PokemonFragment
+import com.example.pokeapp.model.PokeApiResponse
 import com.example.pokeapp.model.Pokemon
 import com.example.pokeapp.model.PokemonManager
 
@@ -18,6 +19,10 @@ class PokemonListActivity : AppCompatActivity(), PokemonFragment.OnPokemonSelect
             println("POKEMONES TEST")
             println(vgList.size)
             // println(vgList.first().stats.first().base_stat)
+        PokemonManager(applicationContext).getPokemonList({ vgList : PokeApiResponse ->
+            println("POKEMONES TEST")
+            println(vgList.results)
+           // println(vgList.first().stats.first().base_stat)
 
         }, { error ->
             //Toast.makeText(activity, "Error: " + error, Toast.LENGTH_SHORT).show()
