@@ -28,7 +28,7 @@ class PokemonManager(context: Context) {
 
 
     fun getPokemonList(callbackOK: (List<Pokemon>) -> Unit, callbackError: (String) -> Unit) {
-        val call = service.getPokemonList(100, 0)
+        val call = service.getPokemonList(20, 0)
         call.enqueue(object : Callback<PokeApiResponse> {
             override fun onResponse(
                 call: Call<PokeApiResponse>,
@@ -40,7 +40,8 @@ class PokemonManager(context: Context) {
                     val call = service.getPokemonStats(a.name)
                     call.enqueue(object : Callback<Pokemon> {
                         override fun onResponse(call: Call<Pokemon>, response: Response<Pokemon>) {
-                            response.body()?.let { pokemon ->
+                            response.body()!!.let { pokemon ->
+                                println(pokemon.id)
                                 pokemonList.add(pokemon)
                             }
                         }
