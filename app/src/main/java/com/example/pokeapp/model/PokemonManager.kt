@@ -77,12 +77,12 @@ class PokemonManager(context: Context) {
     }*/
 
 
-    fun getProductsByRoom(callbackOK: (List<Pokemon>) -> Unit, callbackError: (String) -> Unit) {
-        val videogames: List<Pokemon> = db.pokemonDAO().findAll()
-        callbackOK(videogames)
+    fun getProductsByRoom(callbackOK: (List<Pokemon2>) -> Unit, callbackError: (String) -> Unit) {
+        val pokemon: List<Pokemon2> = db.pokemonDAO().findAll()
+        callbackOK(pokemon)
     }
 
-    private fun saveIntoRoom(pokemons: List<Pokemon>) {
+    private fun saveIntoRoom(pokemons: List<Pokemon2>) {
         pokemons.forEach {
             db.pokemonDAO().insert(it)
         }

@@ -3,14 +3,16 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.example.pokeapp.model.Pokemon
+import com.example.pokeapp.model.Pokemon2
 
+@Dao
 interface PokemonDAO {
-    @Query("SELECT * FROM Pokemon")
-    fun findAll() : List<Pokemon>
+    @Query("SELECT * FROM Pokemon2")
+    fun findAll() : List<Pokemon2>
 
-    @Query("SELECT * FROM Pokemon WHERE id=:id")
-    fun findById(id : Long) : Pokemon
+    @Query("SELECT * FROM Pokemon2 WHERE id=:id")
+    fun findById(id : Long) : Pokemon2
 
     @Insert
-    fun insert(pokemon : Pokemon)
+    fun insert(pokemon : Pokemon2)
 }

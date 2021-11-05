@@ -46,10 +46,10 @@ class PokemonListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.tviPokemonName.text = pokemonsList[position].name
-        Glide.with(fragment)
+/*        Glide.with(fragment)
             .load(pokemonsList[position].sprites.frontDefault)
             .fitCenter()
-            .into(holder.iviPokemonImage)
+            .into(holder.iviPokemonImage)*/
     }
 
     override fun getItemCount(): Int {
