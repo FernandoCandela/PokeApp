@@ -52,6 +52,7 @@ class PokemonListAdapter(
 
         Glide.with(fragment)
             .load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png")
+            .override(600,200)
             .fitCenter()
             .into(holder.iviPokemonImage)
     }
