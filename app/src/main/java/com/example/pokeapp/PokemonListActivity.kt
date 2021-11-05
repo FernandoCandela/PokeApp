@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokeapp.fragment.PokemonFragment
 import com.example.pokeapp.model.PokeApiResponse
+import com.example.pokeapp.model.PokeResult
 import com.example.pokeapp.model.Pokemon
 import com.example.pokeapp.model.PokemonManager
 
@@ -34,7 +35,8 @@ class PokemonListActivity : AppCompatActivity(), PokemonFragment.OnPokemonSelect
         ft.commit()
     }
 
-    override fun onSelect(pokemon: Pokemon) {
+    override fun onSelect(pokemon: PokeResult) {
+        TODO("Not yet implemented")
         println("Cambio de pantalla")
     }
 }

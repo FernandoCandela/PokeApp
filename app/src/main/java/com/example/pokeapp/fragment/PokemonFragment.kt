@@ -12,13 +12,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokeapp.R
 import com.example.pokeapp.adapter.PokemonListAdapter
-import com.example.pokeapp.model.Pokemon
-import com.example.pokeapp.model.Pokemon2
-import com.example.pokeapp.model.PokemonManager
+import com.example.pokeapp.model.*
 
 class PokemonFragment : Fragment(){
     interface OnPokemonSelectedListener{
-        fun onSelect(pokemon:Pokemon)
+        fun onSelect(pokemon:PokeResult)
     }
     private var listener: OnPokemonSelectedListener? = null
 
@@ -37,7 +35,19 @@ class PokemonFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        PokemonManager(requireActivity().applicationContext).getPokemonList({
+        PokemonManager(requireActivity().applicationContext).getPokemonList({ vgList : PokeApiResponse ->
+            println("POKEMONES TEST")
+            println(vgList.results)
+            // println(vgList.first().stats.first().base_stat)
+            val rviPokemon = view.findViewById<RecyclerView>(R.id.rviPokemones)
+            rviPokemon.adapter = PokemonListAdapter(
+                vgList.results,
+                this
+            ){
+                pokemon: PokeResult ->
+                listener?.onSelect(pokemon)
+            }
+
         },{error ->
             Toast.makeText(activity, "Error: " + error, Toast.LENGTH_SHORT).show()
         })

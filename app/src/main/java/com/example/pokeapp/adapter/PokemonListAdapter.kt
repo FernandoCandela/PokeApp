@@ -9,25 +9,26 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.pokeapp.R
+import com.example.pokeapp.model.PokeResult
 import com.example.pokeapp.model.Pokemon
 import com.example.pokeapp.model.Pokemon2
 
 class PokemonListAdapter(
-    private val pokemonsList: List<Pokemon>,
+    private val pokemonsList: List<PokeResult>,
     private val fragment: Fragment,
-    private val listener: (Pokemon) -> Unit) :
+    private val listener: (PokeResult) -> Unit) :
     RecyclerView.Adapter<PokemonListAdapter.ViewHolder>() {
     
     class ViewHolder(
-        view: View, val listener: (Pokemon) -> Unit,
-        val pokemonsList: List<Pokemon>
+        view: View, val listener: (PokeResult) -> Unit,
+        val pokemonsList: List<PokeResult>
     ) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
-        val iviPokemonImage: ImageView
+        //val iviPokemonImage: ImageView
         val tviPokemonName: TextView
 
         init {
-            iviPokemonImage = view.findViewById(R.id.iviPokemonImage)
+            //iviPokemonImage = view.findViewById(R.id.iviPokemonImage)
             tviPokemonName = view.findViewById(R.id.tviPokemonName)
             view.setOnClickListener(this)
         }
@@ -47,10 +48,10 @@ class PokemonListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.tviPokemonName.text = pokemonsList[position].name
-        Glide.with(fragment)
+        /*Glide.with(fragment)
             .load(pokemonsList[position].sprites.frontDefault)
             .fitCenter()
-            .into(holder.iviPokemonImage)
+            .into(holder.iviPokemonImage)*/
     }
 
     override fun getItemCount(): Int {
