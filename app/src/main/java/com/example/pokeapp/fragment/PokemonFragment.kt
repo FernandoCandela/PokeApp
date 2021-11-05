@@ -37,15 +37,7 @@ class PokemonFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        PokemonManager(requireActivity().applicationContext).getPokemonList({vgList: List<Pokemon>->
-            val rviPokemon = view.findViewById<RecyclerView>(R.id.rviPokemones)
-            rviPokemon.adapter = PokemonListAdapter(
-                vgList,
-                this
-            ){pokemon: Pokemon->
-                listener?.onSelect(pokemon)
-            }
-
+        PokemonManager(requireActivity().applicationContext).getPokemonList({
         },{error ->
             Toast.makeText(activity, "Error: " + error, Toast.LENGTH_SHORT).show()
         })
