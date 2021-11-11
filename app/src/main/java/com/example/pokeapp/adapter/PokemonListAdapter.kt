@@ -13,22 +13,33 @@ import com.example.pokeapp.R
 import com.example.pokeapp.model.*
 
 class PokemonListAdapter(
-    private val pokemonsList: List<PokeResult>,
+    private val pokemonsList: List<Pokemon2>,
     private val fragment: Fragment,
-    private val listener: (PokeResult) -> Unit) :
+    private val listener: (Pokemon2) -> Unit) :
     RecyclerView.Adapter<PokemonListAdapter.ViewHolder>() {
     
     class ViewHolder(
-        view: View, val listener: (PokeResult) -> Unit,
-        val pokemonsList: List<PokeResult>
+        view: View, val listener: (Pokemon2) -> Unit,
+        val pokemonsList: List<Pokemon2>
     ) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
         val iviPokemonImage: ImageView
         val tviPokemonName: TextView
 
+        val tviPokemonHP: TextView
+        val tviPokemonATK: TextView
+        val tviPokemonDEF: TextView
+        val tviPokemonSSATK: TextView
+        val tviPokemonSSDEF: TextView
+
         init {
             iviPokemonImage = view.findViewById(R.id.imageView2)
             tviPokemonName = view.findViewById(R.id.tviPokemonName)
+            tviPokemonHP = view.findViewById(R.id.tviPokemonHP)
+            tviPokemonATK = view.findViewById(R.id.tviPokemonATK)
+            tviPokemonDEF = view.findViewById(R.id.tviPokemonDEF)
+            tviPokemonSSATK = view.findViewById(R.id.tviPokemonSSATK)
+            tviPokemonSSDEF = view.findViewById(R.id.tviPokemonSSDEF)
             view.setOnClickListener(this)
         }
 
@@ -47,11 +58,17 @@ class PokemonListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.tviPokemonName.text = pokemonsList[position].name
-        val partes : List<String> =  pokemonsList[position].url.split("/")
-        val id : String = partes[partes.size-2]
+        holder.tviPokemonHP.text = pokemonsList[position].hp.toString()
+        holder.tviPokemonATK.text = pokemonsList[position].attack.toString()
+        holder.tviPokemonDEF.text = pokemonsList[position].defense.toString()
+        holder.tviPokemonSSATK.text = pokemonsList[position].special_attack.toString()
+        holder.tviPokemonSSDEF.text = pokemonsList[position].special_defense.toString()
+
+        /*val partes : List<String> =  pokemonsList[position].url.split("/")
+        val id : String = partes[partes.size-2]*/
 
         Glide.with(fragment)
-            .load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png")
+            .load(pokemonsList[position].url)
             .override(600,200)
             .fitCenter()
             .into(holder.iviPokemonImage)

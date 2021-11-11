@@ -16,7 +16,7 @@ import com.example.pokeapp.model.*
 
 class PokemonFragment : Fragment(){
     interface OnPokemonSelectedListener{
-        fun onSelect(pokemon:PokeResult)
+        fun onSelect(pokemon:Pokemon2)
     }
     private var listener: OnPokemonSelectedListener? = null
 
@@ -35,16 +35,14 @@ class PokemonFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        PokemonManager(requireActivity().applicationContext).getPokemonList({ vgList : PokeApiResponse ->
-            println("POKEMONES TEST")
-            println(vgList.results)
+        PokemonManager(requireActivity().applicationContext).getPokemonsFirebase({ vgList : List<Pokemon2> ->
             // println(vgList.first().stats.first().base_stat)
             val rviPokemon = view.findViewById<RecyclerView>(R.id.rviPokemones)
             rviPokemon.adapter = PokemonListAdapter(
-                vgList.results,
+                vgList,
                 this
             ){
-                pokemon: PokeResult ->
+                pokemon: Pokemon2 ->
                 listener?.onSelect(pokemon)
             }
 

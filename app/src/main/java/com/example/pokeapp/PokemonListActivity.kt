@@ -7,10 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokeapp.fragment.PokemonFragment
-import com.example.pokeapp.model.PokeApiResponse
-import com.example.pokeapp.model.PokeResult
-import com.example.pokeapp.model.Pokemon
-import com.example.pokeapp.model.PokemonManager
+import com.example.pokeapp.model.*
 
 class PokemonListActivity : AppCompatActivity(), PokemonFragment.OnPokemonSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +33,7 @@ class PokemonListActivity : AppCompatActivity(), PokemonFragment.OnPokemonSelect
         ft.commit()
     }
 
-    override fun onSelect(pokemon: PokeResult) {
+    override fun onSelect(pokemon: Pokemon2) {
 /*        val intent: Intent = Intent()
         intent.setClass(this, PokemonDetalleActivity::class.java)
         startActivity(intent)*/

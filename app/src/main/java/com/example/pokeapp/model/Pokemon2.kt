@@ -7,15 +7,15 @@ import androidx.room.PrimaryKey
 @Entity
 data class Pokemon2 (
     @PrimaryKey
-    val id : Long,
+    val id : String,
     @ColumnInfo(name = "name")
     val name : String,
     @ColumnInfo(name = "hp")
     val hp : Int,
     @ColumnInfo(name = "attack")
-    val attack : String,
+    val attack : Float,
     @ColumnInfo(name = "defense")
-    val defense : String,
+    val defense : Float,
     @ColumnInfo(name = "special_attack")
     val special_attack : Float,
     @ColumnInfo(name = "special_defense")
