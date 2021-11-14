@@ -14,6 +14,8 @@ class PokemonDetalleActivity : AppCompatActivity() {
 
         val pokemon = intent.extras!!.get("data") as Pokemon2
 
+        val entrenador =  intent.getBundleExtra("dataEntrenador")?.getString("name").toString()
+
         val tviTitle: TextView = findViewById(R.id.tviTitle)
         val tviAttack: TextView = findViewById(R.id.tviAttack)
         val tviDefense: TextView = findViewById(R.id.tviDefense)
