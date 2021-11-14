@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.pokeapp.fragment.PokemonFavoritoFragment
 import com.example.pokeapp.fragment.PokemonFragment
 import com.example.pokeapp.model.Favorito
