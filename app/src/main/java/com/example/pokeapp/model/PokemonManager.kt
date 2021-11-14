@@ -32,25 +32,21 @@ class PokemonManager(context: Context) {
                 callbackError(it.message!!)
             }
     }
-    fun getPokemonsFavByUserFirebase(callbackOK : (List<Pokemon2>) -> Unit, callbackError : (String) -> Unit) {
+    fun getPokemonsFavByUserFirebase(name_entrenador: String?, callbackOK : (List<Favorito>) -> Unit, callbackError : (String) -> Unit) {
         dbFirebase.collection("favoritos")
+            .whereEqualTo("name_entrenador",name_entrenador)
             .get()
             .addOnSuccessListener { res ->
-                val products = arrayListOf<Pokemon2>()
+                val favoritos = arrayListOf<Favorito>()
                 for (document in res) {
-                    val pk = Pokemon2(
+                    val pk = Favorito(
                         document.id,
-                        document.data["name"]!! as String,
-                        (document.data["hp"]!! as Long).toInt(),
-                        (document.data["attack"]!! as Long).toFloat(),
-                        (document.data["defense"]!! as Long).toFloat(),
-                        (document.data["special_attack"]!! as Long).toFloat(),
-                        (document.data["special_defense"]!! as Long).toFloat(),
-                        document.data["url"]!! as String
+                        document.data["name_entrenador"]!! as String,
+                        document.data["name_pokemon"]!! as String
                     )
-                    products.add(pk)
+                    favoritos.add(pk)
                 }
-                callbackOK(products)
+                callbackOK(favoritos)
             }
             .addOnFailureListener {
                 callbackError(it.message!!)

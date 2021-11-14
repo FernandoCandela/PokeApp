@@ -22,11 +22,16 @@ class MainActivity : AppCompatActivity() {
         val butContinuar: Button = findViewById(R.id.butContinuar)
         val butFav: Button = findViewById(R.id.butFavoritos)
 
+        val ptxEntrenador: EditText = findViewById(R.id.ptxEntrenador)
+
         butContinuar.setOnClickListener { _: View ->
             if(entrenadorIsValid()){
                 addEntrenador()
                 val intent: Intent = Intent()
                 intent.setClass(this, PokemonListActivity::class.java)
+                val bundle: Bundle = Bundle()
+                bundle.putString("name",ptxEntrenador.text.toString())
+                intent.putExtra("data",bundle)
                 startActivity(intent)
             }
         }
@@ -35,6 +40,9 @@ class MainActivity : AppCompatActivity() {
                 addEntrenador()
                 val intent: Intent = Intent()
                 intent.setClass(this, FavoritosListActivity::class.java)
+                val bundle: Bundle = Bundle()
+                bundle.putString("name",ptxEntrenador.text.toString())
+                intent.putExtra("data",bundle)
                 startActivity(intent)
             }
         }

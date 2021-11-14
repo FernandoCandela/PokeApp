@@ -11,13 +11,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pokeapp.R
 import com.example.pokeapp.adapter.FavoritosListAdapter
 import com.example.pokeapp.adapter.PokemonListAdapter
+import com.example.pokeapp.model.Favorito
 import com.example.pokeapp.model.Pokemon2
 import com.example.pokeapp.model.PokemonFavManager
 import com.example.pokeapp.model.PokemonManager
 
 class PokemonFavoritoFragment : Fragment() {
     interface OnPokemonSelectedListener{
-        fun onSelect(pokemon:Pokemon2)
+        fun onSelect(pokemon:Favorito)
     }
     private var listener: PokemonFavoritoFragment.OnPokemonSelectedListener? = null
     override fun onAttach(context: Context) {
@@ -36,15 +37,18 @@ class PokemonFavoritoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        PokemonManager(requireActivity().applicationContext).getPokemonsFirebase({ vgList : List<Pokemon2> ->
+        val bundle = arguments
+        val name = bundle!!.getString("name")
+
+        PokemonManager(requireActivity().applicationContext).getPokemonsFavByUserFirebase(name,{ vgList : List<Favorito> ->
             // println(vgList.first().stats.first().base_stat)
             val rviFavoritos = view.findViewById<RecyclerView>(R.id.rviFavoritos)
             rviFavoritos.adapter = FavoritosListAdapter(
                 vgList,
                 this
             ){
-                    pokemon: Pokemon2 ->
-                listener?.onSelect(pokemon)
+                    fav: Favorito ->
+                listener?.onSelect(fav)
             }
 
         },{error ->

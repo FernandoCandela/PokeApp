@@ -10,18 +10,19 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokeapp.R
+import com.example.pokeapp.model.Favorito
 import com.example.pokeapp.model.Pokemon2
 
 class FavoritosListAdapter(
-    private val favoritosList: List<Pokemon2>,
+    private val favoritosList: List<Favorito>,
     private val fragment: Fragment,
-    private val listener: (Pokemon2) -> Unit
+    private val listener: (Favorito) -> Unit
 ) :
     RecyclerView.Adapter<FavoritosListAdapter.ViewHolder>() {
 
     class ViewHolder(
-        view: View, val listener: (Pokemon2) -> Unit,
-        val favoritosList: List<Pokemon2>
+        view: View, val listener: (Favorito) -> Unit,
+        val favoritosList: List<Favorito>
     ) : RecyclerView.ViewHolder(view), View.OnClickListener {
         val tviFavoritoName: TextView
         val butEliminarFavorito: Button
@@ -45,7 +46,7 @@ class FavoritosListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.tviFavoritoName.text = favoritosList[position].name
+        holder.tviFavoritoName.text = favoritosList[position].name_pokemon
 
         holder.butEliminarFavorito.setOnClickListener{
             //Eliminar favoritos de firebase
