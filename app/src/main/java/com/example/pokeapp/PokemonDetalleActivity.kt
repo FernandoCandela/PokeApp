@@ -4,20 +4,17 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.pokeapp.model.PokeInfoManager
+import com.example.pokeapp.model.Pokemon2
 
 class PokemonDetalleActivity : AppCompatActivity() {
-    lateinit var viewModel: PokeInfoManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pokemon_detalle)
 
-        viewModel = ViewModelProvider(this).get(PokeInfoManager::class.java)
-
-        val name = intent.getBundleExtra("data")?.getString("name").toString()
+        val pokemon = intent.extras!!.get("data") as Pokemon2
 
         val tviTitle: TextView = findViewById(R.id.tviTitle)
         val tviAttack: TextView = findViewById(R.id.tviAttack)
@@ -25,17 +22,13 @@ class PokemonDetalleActivity : AppCompatActivity() {
         val tviSpecialAttack: TextView = findViewById(R.id.tviSpecialAttack)
         val tviSpecialDefense: TextView = findViewById(R.id.tviSpecialDefense)
         val imgPokemon: ImageView = findViewById(R.id.imgPokemon)
+        tviTitle.text = pokemon.name
+        tviAttack.text = pokemon.attack.toString()
+        tviDefense.text = pokemon.defense.toString()
+        tviSpecialAttack.text = pokemon.special_attack.toString()
+        tviSpecialDefense.text = pokemon.special_defense.toString()
 
-        viewModel.getPokemonInfo(name)
+        Glide.with(this).load(pokemon.url).into(imgPokemon)
 
-        viewModel.pokemonInfo.observe(this, Observer { pokemon ->
-            tviTitle.text = pokemon.name
-            tviAttack.text = pokemon.stats[0].base_stat.toString()
-            tviDefense.text = pokemon.stats[1].base_stat.toString()
-            tviSpecialAttack.text = pokemon.stats[2].base_stat.toString()
-            tviSpecialDefense.text = pokemon.stats[3].base_stat.toString()
-
-            Glide.with(this).load(pokemon.sprites.frontDefault).into(imgPokemon)
-        })
     }
 }

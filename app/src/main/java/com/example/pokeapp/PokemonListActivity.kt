@@ -39,9 +39,7 @@ class PokemonListActivity : AppCompatActivity(), PokemonFragment.OnPokemonSelect
         startActivity(intent)*/
         
         val intent: Intent = Intent(this, PokemonDetalleActivity::class.java)
-        val bundle: Bundle = Bundle()
-        bundle.putString("name", pokemon.name)
-        intent.putExtra("data", bundle)
+        intent.putExtra("data", pokemon)
         startActivity(intent)
     }
 }

@@ -32,7 +32,4 @@ class PokemonManager(context: Context) {
                 callbackError(it.message!!)
             }
     }
-
-
-
 }

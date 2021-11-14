@@ -3,6 +3,7 @@ package com.example.pokeapp.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity
 data class Pokemon2 (
@@ -22,4 +23,4 @@ data class Pokemon2 (
     val special_defense : Float,
     @ColumnInfo(name = "url")
     val url : String
-)
+):Serializable
