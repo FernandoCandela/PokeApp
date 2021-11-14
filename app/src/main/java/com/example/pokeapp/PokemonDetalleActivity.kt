@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.example.pokeapp.model.PokeInfoManager
 import com.example.pokeapp.model.Pokemon2
 
 class PokemonDetalleActivity : AppCompatActivity() {
