@@ -40,7 +40,7 @@ class PokemonDetalleActivity : AppCompatActivity() {
             btnAddFav.setEnabled(isvalid)
             if (isvalid) {
                 btnAddFav.setOnClickListener{
-                    PokemonManager(this).addPokemonsFav(entrenador, pokemon.name, { id: String ->
+                    PokemonManager().addPokemonsFav(entrenador, pokemon.name, { id: String ->
                         println(id)
                         btnAddFav.setEnabled(false)
                         Toast.makeText(this, "Pokemon agregado a la lista de favoritos correctamente", Toast.LENGTH_SHORT).show()
