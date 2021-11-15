@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -14,14 +13,14 @@ import com.example.pokeapp.R
 import com.example.pokeapp.model.*
 
 class PokemonListAdapter(
-    private val pokemonsList: List<Pokemon2>,
+    private val pokemonsList: List<Pokemon>,
     private val fragment: Fragment,
-    private val listener: (Pokemon2) -> Unit) :
+    private val listener: (Pokemon) -> Unit) :
     RecyclerView.Adapter<PokemonListAdapter.ViewHolder>() {
     
     class ViewHolder(
-        view: View, val listener: (Pokemon2) -> Unit,
-        val pokemonsList: List<Pokemon2>
+        view: View, val listener: (Pokemon) -> Unit,
+        val pokemonsList: List<Pokemon>
     ) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
         val iviPokemonImage: ImageView

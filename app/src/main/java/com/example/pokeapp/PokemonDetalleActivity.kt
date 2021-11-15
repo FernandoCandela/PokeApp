@@ -7,7 +7,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.example.pokeapp.model.Pokemon2
+import com.example.pokeapp.model.Pokemon
 import com.example.pokeapp.model.PokemonManager
 
 class PokemonDetalleActivity : AppCompatActivity() {
@@ -15,7 +15,7 @@ class PokemonDetalleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pokemon_detalle)
 
-        val pokemon = intent.extras!!.get("data") as Pokemon2
+        val pokemon = intent.extras!!.get("data") as Pokemon
 
         val entrenador =  intent.getBundleExtra("dataEntrenador")?.getString("name").toString()
 

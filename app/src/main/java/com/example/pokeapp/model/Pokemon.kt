@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity
-data class Pokemon2 (
+data class Pokemon (
     @PrimaryKey
     val id : String,
     @ColumnInfo(name = "name")

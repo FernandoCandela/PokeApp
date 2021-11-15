@@ -2,7 +2,6 @@ package com.example.pokeapp.adapter
 
 import android.app.AlertDialog
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokeapp.R
 import com.example.pokeapp.model.Favorito
-import com.example.pokeapp.model.Pokemon2
 import com.example.pokeapp.model.PokemonManager
 
 class FavoritosListAdapter(

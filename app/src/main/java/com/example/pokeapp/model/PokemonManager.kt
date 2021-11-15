@@ -1,22 +1,20 @@
 package com.example.pokeapp.model
 
 import android.content.Context
-import android.util.Log
 import android.widget.Toast
-import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class PokemonManager() {
     private val dbFirebase = Firebase.firestore
 
-    fun getPokemonsFirebase(callbackOK: (List<Pokemon2>) -> Unit, callbackError: (String) -> Unit) {
+    fun getPokemonsFirebase(callbackOK: (List<Pokemon>) -> Unit, callbackError: (String) -> Unit) {
         dbFirebase.collection("pokemon")
             .get()
             .addOnSuccessListener { res ->
-                val products = arrayListOf<Pokemon2>()
+                val products = arrayListOf<Pokemon>()
                 for (document in res) {
-                    val pk = Pokemon2(
+                    val pk = Pokemon(
                         document.id,
                         document.data["name"]!! as String,
                         (document.data["hp"]!! as Long).toInt(),
