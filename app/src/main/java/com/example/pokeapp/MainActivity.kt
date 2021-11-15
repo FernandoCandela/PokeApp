@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
     fun addEntrenador() {
         val ptxEntrenador: EditText = findViewById(R.id.ptxEntrenador)
         dbFirebase.collection("entrenador")
-            .document(ptxEntrenador.text.toString())
+            .document(ptxEntrenador.text.trim().toString())
             .set(hashMapOf("name" to ptxEntrenador.text.toString()))
     }
 }

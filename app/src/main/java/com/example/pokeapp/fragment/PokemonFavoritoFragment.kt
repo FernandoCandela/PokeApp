@@ -10,10 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokeapp.R
 import com.example.pokeapp.adapter.FavoritosListAdapter
-import com.example.pokeapp.adapter.PokemonListAdapter
 import com.example.pokeapp.model.Favorito
-import com.example.pokeapp.model.Pokemon2
-import com.example.pokeapp.model.PokemonFavManager
 import com.example.pokeapp.model.PokemonManager
 
 class PokemonFavoritoFragment : Fragment() {
