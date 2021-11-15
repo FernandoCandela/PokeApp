@@ -53,30 +53,25 @@ class PokemonManager(context: Context) {
             }
     }
 
-/*    fun getProductsFirebase(callbackOK : (List<Videogame>) -> Unit, callbackError : (String) -> Unit) {
-        dbFirebase.collection("videogames")
+    fun btnFavIsValid(name_entrenador: String?,name_pokemon: String?, callbackOK : (Boolean) -> Unit, callbackError : (String) -> Unit) {
+        dbFirebase.collection("favoritos")
+            .whereEqualTo("name_entrenador",name_entrenador)
+            .whereEqualTo("name_pokemon",name_pokemon)
             .get()
             .addOnSuccessListener { res ->
-                val products = arrayListOf<Videogame>()
+                val favoritos = arrayListOf<Favorito>()
                 for (document in res) {
-                    println()
-                    val vg = Videogame(
-                        document.id.toLong(),
-                        document.data["nombre"]!! as String,
-                        (document.data["categoria"]!! as DocumentReference).id.toLong(),
-                        document.data["consolas"]!! as String,
-                        document.data["desarrollador"]!! as String,
-                        (document.data["ranking"]!! as Double).toFloat(),
-                        (document.data["precio"]!! as Long).toFloat(),
-                        document.data["url"]!! as String
+                    val pk = Favorito(
+                        document.id,
+                        document.data["name_entrenador"]!! as String,
+                        document.data["name_pokemon"]!! as String
                     )
-                    products.add(vg)
+                    favoritos.add(pk)
                 }
-                callbackOK(products)
+                if (favoritos.size > 0) callbackOK(false) else callbackOK(true)
             }
             .addOnFailureListener {
                 callbackError(it.message!!)
             }
-    }*/
-
+    }
 }

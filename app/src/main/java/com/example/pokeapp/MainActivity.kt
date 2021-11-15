@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
                 val intent: Intent = Intent()
                 intent.setClass(this, PokemonListActivity::class.java)
                 val bundle: Bundle = Bundle()
-                bundle.putString("name",ptxEntrenador.text.toString())
+                bundle.putString("name",ptxEntrenador.text.trim().toString())
                 intent.putExtra("data",bundle)
                 startActivity(intent)
             }
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                 val intent: Intent = Intent()
                 intent.setClass(this, FavoritosListActivity::class.java)
                 val bundle: Bundle = Bundle()
-                bundle.putString("name",ptxEntrenador.text.toString())
+                bundle.putString("name", ptxEntrenador.text.trim().toString())
                 intent.putExtra("data",bundle)
                 startActivity(intent)
             }
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
     fun entrenadorIsValid(): Boolean {
         val ptxEntrenador: EditText = findViewById(R.id.ptxEntrenador)
-        if (!(ptxEntrenador.text).isNullOrEmpty()) {
+        if (!(ptxEntrenador.text.trim()).isNullOrEmpty()) {
             return true
         } else {
             Toast.makeText(this, "Ingresa un Entrenador", Toast.LENGTH_SHORT).show()

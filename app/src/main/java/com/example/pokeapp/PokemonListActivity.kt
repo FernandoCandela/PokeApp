@@ -28,7 +28,7 @@ class PokemonListActivity : AppCompatActivity(), PokemonFragment.OnPokemonSelect
             //Toast.makeText(activity, "Error: " + error, Toast.LENGTH_SHORT).show()
         })
 */
-        val entrenador = intent.getBundleExtra("data")?.getString("name").toString()
+       entrenador = intent.getBundleExtra("data")?.getString("name").toString()
 
 
         val fragment = PokemonFragment()
