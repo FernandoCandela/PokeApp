@@ -1,6 +1,7 @@
 package com.example.pokeapp.adapter
 
 import android.app.AlertDialog
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import com.example.pokeapp.model.Pokemon2
 import com.example.pokeapp.model.PokemonManager
 
 class FavoritosListAdapter(
+    val context: Context,
     private val favoritosList: MutableList<Favorito>,
     private val fragment: Fragment,
     private val listener: (Favorito) -> Unit
@@ -40,19 +42,32 @@ class FavoritosListAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_favorito, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_favorito, parent, false)
 
-        val viewHolder = ViewHolder(view,listener, favoritosList)
+        val viewHolder = ViewHolder(view, listener, favoritosList)
         return viewHolder
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.tviFavoritoName.text = favoritosList[position].name_pokemon
 
-        holder.butEliminarFavorito.setOnClickListener{
-            PokemonManager().btnDeleteFav(favoritosList[position].id)
-            favoritosList.removeAt(position)
-            notifyDataSetChanged()
+        holder.butEliminarFavorito.setOnClickListener {
+            AlertDialog.Builder(context).setTitle("Eliminar")
+                .setMessage("Se eliminara de favoritos ¿Deseas continuar?")
+                .setPositiveButton("Si"){ dialog ,_ ->
+                    PokemonManager().btnDeleteFav(context, favoritosList[position].id)
+                    favoritosList.removeAt(position)
+                    notifyDataSetChanged()
+
+                    dialog.dismiss()
+                } .setNegativeButton("No"){
+                        dialog, _->
+                    dialog.dismiss()
+                }
+                .create()
+                .show()
+
         }
     }
 

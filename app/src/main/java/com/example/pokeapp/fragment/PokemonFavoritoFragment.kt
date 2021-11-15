@@ -43,7 +43,7 @@ class PokemonFavoritoFragment : Fragment() {
         PokemonManager().getPokemonsFavByUserFirebase(name,{ vgList : MutableList<Favorito> ->
             // println(vgList.first().stats.first().base_stat)
             val rviFavoritos = view.findViewById<RecyclerView>(R.id.rviFavoritos)
-            rviFavoritos.adapter = FavoritosListAdapter(
+            rviFavoritos.adapter = FavoritosListAdapter(requireContext(),
                 vgList,
                 this
             ){

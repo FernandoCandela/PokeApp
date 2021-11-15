@@ -88,19 +88,28 @@ class PokemonManager() {
     }
 
     fun btnDeleteFav(
+        context: Context,
         id: String
     ) {
         dbFirebase.collection("favoritos").document(id)
             .delete()
-            .addOnSuccessListener { Log.d("eliminado", "DocumentSnapshot successfully deleted!") }
-            .addOnFailureListener { e -> Log.w("error", "Error deleting document", e) }
+            .addOnSuccessListener { Toast.makeText(context,"Pokémon Favorito Eliminado", Toast.LENGTH_SHORT).show() }
+            .addOnFailureListener {  Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show() }
     }
-    fun addPokemonsFav(name_entrenador: String?,name_pokemon: String?, callbackOK : (String) -> Unit, callbackError : (String) -> Unit) {
+
+    fun addPokemonsFav(
+        name_entrenador: String?,
+        name_pokemon: String?,
+        callbackOK: (String) -> Unit,
+        callbackError: (String) -> Unit
+    ) {
         dbFirebase.collection("favoritos")
-            .add(hashMapOf(
-                "name_entrenador" to name_entrenador,
-                "name_pokemon" to name_pokemon
-            ))
+            .add(
+                hashMapOf(
+                    "name_entrenador" to name_entrenador,
+                    "name_pokemon" to name_pokemon
+                )
+            )
             .addOnSuccessListener { documentReference ->
                 callbackOK(documentReference.id)
             }

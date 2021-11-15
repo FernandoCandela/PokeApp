@@ -35,7 +35,7 @@ class FavoritosListActivity : AppCompatActivity(), PokemonFavoritoFragment.OnPok
     }
 
     override fun onSelect(fav: Favorito) {
-       Log.i("onselect","hola")
+       Log.i("onselect","select")
     }
 
 
