@@ -1,14 +1,15 @@
 package com.example.pokeapp.model
 
 import android.content.Context
+import android.util.Log
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class PokemonManager(context: Context) {
+class PokemonManager() {
     private val dbFirebase = Firebase.firestore
 
-    fun getPokemonsFirebase(callbackOK : (List<Pokemon2>) -> Unit, callbackError : (String) -> Unit) {
+    fun getPokemonsFirebase(callbackOK: (List<Pokemon2>) -> Unit, callbackError: (String) -> Unit) {
         dbFirebase.collection("pokemon")
             .get()
             .addOnSuccessListener { res ->
@@ -32,9 +33,14 @@ class PokemonManager(context: Context) {
                 callbackError(it.message!!)
             }
     }
-    fun getPokemonsFavByUserFirebase(name_entrenador: String?, callbackOK : (List<Favorito>) -> Unit, callbackError : (String) -> Unit) {
+
+    fun getPokemonsFavByUserFirebase(
+        name_entrenador: String?,
+        callbackOK: (MutableList<Favorito>) -> Unit,
+        callbackError: (String) -> Unit
+    ) {
         dbFirebase.collection("favoritos")
-            .whereEqualTo("name_entrenador",name_entrenador)
+            .whereEqualTo("name_entrenador", name_entrenador)
             .get()
             .addOnSuccessListener { res ->
                 val favoritos = arrayListOf<Favorito>()
@@ -53,10 +59,15 @@ class PokemonManager(context: Context) {
             }
     }
 
-    fun btnFavIsValid(name_entrenador: String?,name_pokemon: String?, callbackOK : (Boolean) -> Unit, callbackError : (String) -> Unit) {
+    fun btnFavIsValid(
+        name_entrenador: String?,
+        name_pokemon: String?,
+        callbackOK: (Boolean) -> Unit,
+        callbackError: (String) -> Unit
+    ) {
         dbFirebase.collection("favoritos")
-            .whereEqualTo("name_entrenador",name_entrenador)
-            .whereEqualTo("name_pokemon",name_pokemon)
+            .whereEqualTo("name_entrenador", name_entrenador)
+            .whereEqualTo("name_pokemon", name_pokemon)
             .get()
             .addOnSuccessListener { res ->
                 val favoritos = arrayListOf<Favorito>()
@@ -73,5 +84,14 @@ class PokemonManager(context: Context) {
             .addOnFailureListener {
                 callbackError(it.message!!)
             }
+    }
+
+    fun btnDeleteFav(
+        id: String
+    ) {
+        dbFirebase.collection("favoritos").document(id)
+            .delete()
+            .addOnSuccessListener { Log.d("eliminado", "DocumentSnapshot successfully deleted!") }
+            .addOnFailureListener { e -> Log.w("error", "Error deleting document", e) }
     }
 }

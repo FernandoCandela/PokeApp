@@ -40,7 +40,7 @@ class PokemonFavoritoFragment : Fragment() {
         val bundle = arguments
         val name = bundle!!.getString("name")
 
-        PokemonManager(requireActivity().applicationContext).getPokemonsFavByUserFirebase(name,{ vgList : List<Favorito> ->
+        PokemonManager().getPokemonsFavByUserFirebase(name,{ vgList : MutableList<Favorito> ->
             // println(vgList.first().stats.first().base_stat)
             val rviFavoritos = view.findViewById<RecyclerView>(R.id.rviFavoritos)
             rviFavoritos.adapter = FavoritosListAdapter(

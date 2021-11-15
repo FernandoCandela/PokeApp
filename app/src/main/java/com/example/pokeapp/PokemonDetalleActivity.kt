@@ -36,7 +36,7 @@ class PokemonDetalleActivity : AppCompatActivity() {
 
         btnAddFav.setEnabled(false)
 
-        PokemonManager(this).btnFavIsValid(entrenador, pokemon.name, { isvalid: Boolean ->
+        PokemonManager().btnFavIsValid(entrenador, pokemon.name, { isvalid: Boolean ->
             btnAddFav.setEnabled(isvalid)
 
         }, { error ->

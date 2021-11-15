@@ -12,9 +12,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pokeapp.R
 import com.example.pokeapp.model.Favorito
 import com.example.pokeapp.model.Pokemon2
+import com.example.pokeapp.model.PokemonManager
 
 class FavoritosListAdapter(
-    private val favoritosList: List<Favorito>,
+    private val favoritosList: MutableList<Favorito>,
     private val fragment: Fragment,
     private val listener: (Favorito) -> Unit
 ) :
@@ -22,7 +23,7 @@ class FavoritosListAdapter(
 
     class ViewHolder(
         view: View, val listener: (Favorito) -> Unit,
-        val favoritosList: List<Favorito>
+        val favoritosList: MutableList<Favorito>
     ) : RecyclerView.ViewHolder(view), View.OnClickListener {
         val tviFavoritoName: TextView
         val butEliminarFavorito: Button
@@ -49,8 +50,9 @@ class FavoritosListAdapter(
         holder.tviFavoritoName.text = favoritosList[position].name_pokemon
 
         holder.butEliminarFavorito.setOnClickListener{
-            //Eliminar favoritos de firebase
-            Log.i("eliminar", holder.tviFavoritoName.text as String)
+            PokemonManager().btnDeleteFav(favoritosList[position].id)
+            favoritosList.removeAt(position)
+            notifyDataSetChanged()
         }
     }
 
