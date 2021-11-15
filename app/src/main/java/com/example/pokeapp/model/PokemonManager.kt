@@ -2,6 +2,7 @@ package com.example.pokeapp.model
 
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -94,4 +95,19 @@ class PokemonManager() {
             .addOnSuccessListener { Log.d("eliminado", "DocumentSnapshot successfully deleted!") }
             .addOnFailureListener { e -> Log.w("error", "Error deleting document", e) }
     }
+    fun addPokemonsFav(name_entrenador: String?,name_pokemon: String?, callbackOK : (String) -> Unit, callbackError : (String) -> Unit) {
+        dbFirebase.collection("favoritos")
+            .add(hashMapOf(
+                "name_entrenador" to name_entrenador,
+                "name_pokemon" to name_pokemon
+            ))
+            .addOnSuccessListener { documentReference ->
+                callbackOK(documentReference.id)
+            }
+            .addOnFailureListener {
+                callbackError(it.message!!)
+            }
+
+    }
+
 }

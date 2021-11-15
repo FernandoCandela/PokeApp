@@ -38,9 +38,19 @@ class PokemonDetalleActivity : AppCompatActivity() {
 
         PokemonManager().btnFavIsValid(entrenador, pokemon.name, { isvalid: Boolean ->
             btnAddFav.setEnabled(isvalid)
-
+            if (isvalid) {
+                btnAddFav.setOnClickListener{
+                    PokemonManager(this).addPokemonsFav(entrenador, pokemon.name, { id: String ->
+                        println(id)
+                        btnAddFav.setEnabled(false)
+                        Toast.makeText(this, "Pokemon agregado a la lista de favoritos correctamente", Toast.LENGTH_SHORT).show()
+                    }, { error ->
+                        Toast.makeText(this, "Error: $error", Toast.LENGTH_SHORT).show()
+                    })
+                }
+            }
         }, { error ->
-            Toast.makeText(this, "Error: " + error, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Error: $error", Toast.LENGTH_SHORT).show()
         })
     }
 }
